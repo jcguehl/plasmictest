@@ -31,11 +31,15 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
+import Button from "../../Button"; // plasmic-import: P_Sp_1dQVxN/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic_blank_project.module.css"; // plasmic-import: a8YFUxgfWi7wVnE4zUTdHu/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: la6dku6osJKV/css
+
+import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: RgzVS264hj5/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: WOPiH_ZD-nn/icon
 
 export type PlasmicHomepage__VariantMembers = {};
 
@@ -51,6 +55,10 @@ export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   h1?: p.Flex<"h1">;
   text?: p.Flex<"div">;
+  freeBox?: p.Flex<"div">;
+  columns?: p.Flex<"div">;
+  search?: p.Flex<typeof Button>;
+  go?: p.Flex<typeof Button>;
 };
 
 export interface DefaultHomepageProps {
@@ -140,6 +148,39 @@ function PlasmicHomepage__RenderFunc(props: {
               </React.Fragment>
             </React.Fragment>
           </div>
+
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          />
+
+          <div
+            data-plasmic-name={"columns"}
+            data-plasmic-override={overrides.columns}
+            className={classNames(projectcss.all, sty.columns)}
+          >
+            <div className={classNames(projectcss.all, sty.column__gRzv)}>
+              <Button
+                data-plasmic-name={"search"}
+                data-plasmic-override={overrides.search}
+                className={classNames("__wab_instance", sty.search)}
+              >
+                {"Search"}
+              </Button>
+            </div>
+
+            <div className={classNames(projectcss.all, sty.column__mcsrE)}>
+              <Button
+                data-plasmic-name={"go"}
+                data-plasmic-override={overrides.go}
+                className={classNames("__wab_instance", sty.go)}
+                link={"/new-customer" as const}
+              >
+                {"Go"}
+              </Button>
+            </div>
+          </div>
         </p.Stack>
       </div>
     </React.Fragment>
@@ -147,9 +188,13 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "h1", "text"],
+  root: ["root", "h1", "text", "freeBox", "columns", "search", "go"],
   h1: ["h1"],
-  text: ["text"]
+  text: ["text"],
+  freeBox: ["freeBox"],
+  columns: ["columns", "search", "go"],
+  search: ["search"],
+  go: ["go"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -158,6 +203,10 @@ type NodeDefaultElementType = {
   root: "div";
   h1: "h1";
   text: "div";
+  freeBox: "div";
+  columns: "div";
+  search: typeof Button;
+  go: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -223,6 +272,10 @@ export const PlasmicHomepage = Object.assign(
     // Helper components rendering sub-elements
     h1: makeNodeComponent("h1"),
     text: makeNodeComponent("text"),
+    freeBox: makeNodeComponent("freeBox"),
+    columns: makeNodeComponent("columns"),
+    search: makeNodeComponent("search"),
+    go: makeNodeComponent("go"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

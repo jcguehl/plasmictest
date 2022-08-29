@@ -32,6 +32,7 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import TextInput from "../../TextInput"; // plasmic-import: fVoibZa2HhV/component
+import Button from "../../Button"; // plasmic-import: P_Sp_1dQVxN/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -40,6 +41,7 @@ import sty from "./PlasmicNewCustomer.module.css"; // plasmic-import: KPplLXex2y
 
 import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: snzorMKzcC0/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: RgzVS264hj5/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: WOPiH_ZD-nn/icon
 
 export type PlasmicNewCustomer__VariantMembers = {};
 
@@ -53,9 +55,9 @@ export const PlasmicNewCustomer__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicNewCustomer__OverridesType = {
   root?: p.Flex<"div">;
-  freeBox?: p.Flex<"div">;
   firstName?: p.Flex<typeof TextInput>;
   lastName?: p.Flex<typeof TextInput>;
+  quote?: p.Flex<typeof Button>;
 };
 
 export interface DefaultNewCustomerProps {
@@ -102,11 +104,7 @@ function PlasmicNewCustomer__RenderFunc(props: {
             sty.root
           )}
         >
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__smyT3)}>
             {true ? (
               <TextInput
                 data-plasmic-name={"firstName"}
@@ -125,6 +123,17 @@ function PlasmicNewCustomer__RenderFunc(props: {
               className={classNames("__wab_instance", sty.lastName)}
             />
           </div>
+
+          <div className={classNames(projectcss.all, sty.freeBox___98Pef)}>
+            <Button
+              data-plasmic-name={"quote"}
+              data-plasmic-override={overrides.quote}
+              className={classNames("__wab_instance", sty.quote)}
+              link={"/quote-result" as const}
+            >
+              {"Quote"}
+            </Button>
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -132,19 +141,19 @@ function PlasmicNewCustomer__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "firstName", "lastName"],
-  freeBox: ["freeBox", "firstName", "lastName"],
+  root: ["root", "firstName", "lastName", "quote"],
   firstName: ["firstName"],
-  lastName: ["lastName"]
+  lastName: ["lastName"],
+  quote: ["quote"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
   firstName: typeof TextInput;
   lastName: typeof TextInput;
+  quote: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -208,9 +217,9 @@ export const PlasmicNewCustomer = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
     firstName: makeNodeComponent("firstName"),
     lastName: makeNodeComponent("lastName"),
+    quote: makeNodeComponent("quote"),
 
     // Metadata about props expected for PlasmicNewCustomer
     internalVariantProps: PlasmicNewCustomer__VariantProps,
