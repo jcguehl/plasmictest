@@ -54,11 +54,11 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   h1?: p.Flex<"h1">;
-  text?: p.Flex<"div">;
   freeBox?: p.Flex<"div">;
   columns?: p.Flex<"div">;
   search?: p.Flex<typeof Button>;
   go?: p.Flex<typeof Button>;
+  searchingBox?: p.Flex<"div">;
 };
 
 export interface DefaultHomepageProps {
@@ -121,12 +121,10 @@ function PlasmicHomepage__RenderFunc(props: {
           </h1>
 
           <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text
+              sty.text__oRLvN
             )}
           >
             <React.Fragment>
@@ -181,6 +179,24 @@ function PlasmicHomepage__RenderFunc(props: {
               </Button>
             </div>
           </div>
+
+          <div
+            data-plasmic-name={"searchingBox"}
+            data-plasmic-override={overrides.searchingBox}
+            className={classNames(projectcss.all, sty.searchingBox)}
+          >
+            {true ? (
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__jzsQ4
+                )}
+              >
+                {"Searching..."}
+              </div>
+            ) : null}
+          </div>
         </p.Stack>
       </div>
     </React.Fragment>
@@ -188,13 +204,13 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "h1", "text", "freeBox", "columns", "search", "go"],
+  root: ["root", "h1", "freeBox", "columns", "search", "go", "searchingBox"],
   h1: ["h1"],
-  text: ["text"],
   freeBox: ["freeBox"],
   columns: ["columns", "search", "go"],
   search: ["search"],
-  go: ["go"]
+  go: ["go"],
+  searchingBox: ["searchingBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -202,11 +218,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   h1: "h1";
-  text: "div";
   freeBox: "div";
   columns: "div";
   search: typeof Button;
   go: typeof Button;
+  searchingBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -271,11 +287,11 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     h1: makeNodeComponent("h1"),
-    text: makeNodeComponent("text"),
     freeBox: makeNodeComponent("freeBox"),
     columns: makeNodeComponent("columns"),
     search: makeNodeComponent("search"),
     go: makeNodeComponent("go"),
+    searchingBox: makeNodeComponent("searchingBox"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
